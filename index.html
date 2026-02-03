@@ -88,12 +88,68 @@
         footer { background-color: #222; color: white; text-align: center; padding: 30px; font-size: 0.9rem; }
 
         /* RESPONSIVE */
-        @media (max-width: 768px) {
-            header { flex-direction: column; padding: 15px; }
-            nav { margin-top: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-            nav a { margin: 0; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .stats { flex-direction: column; }
+       @media (max-width: 768px) {
+            
+            /* 1. CABECERA Y MENÚ TIPO APP */
+            header {
+                flex-direction: column;
+                padding: 15px;
+                background-color: white;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Sombra suave abajo */
+            }
+
+            .logo {
+                margin-bottom: 15px; /* Separa el logo del menú */
+            }
+            
+            /* Esto convierte los textos en botones anchos y fáciles de tocar */
+            nav {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 8px; /* Espacio entre botones */
+            }
+
+            nav a {
+                display: block; /* Ocupa todo el ancho */
+                text-align: center;
+                padding: 12px;
+                background-color: #f8f9fa; /* Fondo gris muy clarito */
+                border-radius: 8px; /* Bordes redondeados */
+                color: #333;
+                font-weight: 600;
+                font-size: 14px;
+                border: 1px solid #eee; /* Borde sutil */
+                margin-left: 0; /* Resetea margen de escritorio */
+            }
+
+            /* 2. PORTADA (HERO) AJUSTADA */
+            .hero {
+                min-height: 60vh; /* Altura controlada */
+                padding: 40px 20px;
+                text-align: center;
+                /* Centramos la imagen de fondo mejor */
+                background-position: 50% 50%;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem; /* Título un poco más pequeño para que quepa */
+                line-height: 1.2;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            /* 3. AJUSTES GENERALES */
+            .contacto { flex-direction: column; }
+            .contacto-mapa { height: 300px; }
+            .stats { flex-direction: column; gap: 20px; }
+            
+            /* Asegura que el logo se vea bien centrado */
+            .logo img { height: 45px !important; }
+            .logo span { font-size: 18px !important; }
         }
     </style>
 </head>
@@ -262,3 +318,4 @@
 
 </body>
 </html>
+
