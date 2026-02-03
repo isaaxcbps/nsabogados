@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N&S UQUILLAS ABOGADOS </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        body { margin: 0; font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; line-height: 1.6; }
+        h1, h2, h3 { color: #2c3e50; margin-top: 0; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- 1. BARRA DE NAVEGACIÓN --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-weight: 800; font-size: 22px; color: #0e0e0e; text-transform: uppercase; letter-spacing: 1px; }
+        nav a { margin-left: 25px; font-size: 14px; text-transform: uppercase; font-weight: 600; color: #555; transition: 0.3s; }
+        nav a:hover { color: #070707; }
+
+        /* --- 2. PORTADA (HERO) --- */
+        .hero {
+            background-image: linear-gradient(rgba(10, 10, 10, 0.509), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            height: 85vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding-left: 10%;
+            color: #0d0d0d(37, 63, 123);
+        }
+        .hero-content h3 { color: #FFDB58; font-size: 25px; letter-spacing: 5px; margin-bottom: 15px; }
+        .hero-content h1 { color: #FFDB58;; font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-content p { max-width: 600px; font-size: 1.2rem; color: #FFDB58; margin-bottom: 30px; }
+        .btn { padding: 15px 35px; background-color: #1A284D; color: white; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background-color: #e7ebef; }
+
+        /* --- 3. SERVICIOS (Áreas de Práctica) --- */
+        .servicios { padding: 80px 10%; background-color: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; }
+        
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .servicio-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .servicio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .servicio-card i { font-size: 40px; color: #1A284D; margin-bottom: 20px; }
+        .servicio-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+
+        /* --- 4. ESTADÍSTICAS (Barra Azul) --- */
+        .stats { background-color: #1A284D; color: white; padding: 60px 10%; display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; }
+        .stat-item { margin: 20px; }
+        .stat-number { font-size: 3rem; font-weight: bold; display: block; }
+        .stat-label { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+
+        /* --- 5. EQUIPO --- */
+        .equipo { padding: 80px 10%; background: white; }
+        .grid-equipo { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .abogado-card { width: 300px; text-align: center; }
+        .foto-abogado { width: 100%; height: 350px; object-fit: cover; background-color: #eee; border-radius: 4px; margin-bottom: 15px; }
+        .nombre-abogado { font-size: 1.3rem; font-weight: bold; color: #1A284D; }
+        .cargo-abogado { color: #1A284D; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* --- 6. CONTACTO --- */
+        .contacto { display: flex; flex-wrap: wrap; }
+        .contacto-form { flex: 1; padding: 80px 10%; background-color: #f4f4f4; min-width: 300px; }
+        .contacto-mapa { flex: 1; min-height: 500px; background-color: #ddd; position: relative; }
+        
+        /* Estilos del Formulario */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+        .form-input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .form-input:focus { border-color: #1A284D; outline: none; }
+        textarea.form-input { height: 120px; resize: vertical; }
+        .btn-submit { width: 100%; border: none; cursor: pointer; background-color: #2c3e50; padding: 15px; color: white; font-weight: bold; border-radius: 4px; }
+        
+        /* Mapa embebido de Google */
+        iframe { width: 100%; height: 100%; border: 0; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #222; color: white; text-align: center; padding: 30px; font-size: 0.9rem; }
+
+        
+            
+        /* 1. Estilo del botón hamburguesa (Oculto en PC) */
+        .hamburger-btn {
+            display: none; /* En PC no se ve */
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+        nav {
+            display: flex !important; /* En PC siempre visible */
+            flex-direction: row;
+            gap: 20px;
+            background-color: transparent;
+            border: none;
+            margin-top: 0;
+        }
+        nav a {
+            padding: 0;
+            border: none;
+        }
+        /* --- Parte MOVIL ---*/
+        @media (max-width: 768px) {
+            
+            /* Cabecera: Logo a la izquierda, Botón a la derecha */
+            header {
+                flex-wrap: wrap; /* Permite que el menú baje cuando se abra */
+                padding: 15px 20px;
+                position: sticky;
+            }
+
+            /* Mostrar el botón de 3 rayitas */
+            .hamburger-btn {
+                display: block; 
+            }
+
+            /* Menú Escondido por defecto */
+            nav {
+                width: 100%;
+                display: none; /* OCULTO */
+                flex-direction: column;
+                margin-top: 20px;
+                background-color: white;
+                border-top: 1px solid #eee;
+            }
+
+            /* Clase mágica para mostrar el menú cuando se hace clic */
+            nav.activo {
+                display: flex; /* SE MUESTRA */
+                animation: bajarMenu 0.3s ease; /* Efecto suave */
+            }
+
+            nav a {
+                margin: 0;
+                padding: 15px;
+                border-bottom: 1px solid #f0f0f0;
+                text-align: center;
+                width: auto;
+            }
+
+            /* Ajustes del resto de la página */
+            .hero-content h1 { font-size: 2rem; }
+            .contacto { flex-direction: column; }
+            .contacto-mapa { height: 300px; }
+            .stats { flex-direction: column; gap: 20px; }
+        }
+
+        /* Pequeña animación para que baje suave */
+        @keyframes bajarMenu {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.png" alt="Logo Uquillas" style="height: 90px; width: auto; object-fit: contain;">
+            
+            <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.2;">
+                <span style="font-weight: 800; font-size: 20px; color: #1A284D; text-transform: uppercase;">N<span style="font-size: 0.8em;vertical-align: 1.5px;">&</span>S UQUILLAS</span>
+                <span style="font-size: 14px; color: #1A284D; font-weight: 600; letter-spacing: 2px; text-align: center;">ABOGADOS</span>
+            </div>
+        </div>
+        <button class="hamburger-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+
+        </button>
+        <nav id="menu-nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#equipo">Abogados</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h3>Servicios Legales Integrales</h3>
+            <p>Protegiendo tus derechos con integridad y experiencia. Soluciones jurídicas adaptadas a tus necesidades.<br><br><b><i>“Mas que un aliado un amigo”</i></b></p>
+            <br>
+            <br>
+            <br>
+            <a href="#contacto" class="btn">Solicitar Consulta</a>
+            <br>
+            <br>
+        </div>
+    </section>
+
+    <section id="servicios" class="servicios">
+        <div class="section-header">
+            <h2>SERVICIOS LEGALES</h2>
+            <p>Experiencia legal e integral, puesta al servicio de nuestros clientes.</p>
+        </div>
+        <div class="grid-servicios">
+            <div class="servicio-card">
+                <i class="fas fa-gavel"></i>
+                <h3>Derecho Penal</h3>
+                <p>Defensa técnica especializada en procesos penales, garantizando el debido proceso y tus derechos fundamentales.</p>
+            </div>
+            <div class="servicio-card">
+                <i class="fas fa-balance-scale"></i>
+                <h3>Derecho Civil</h3>
+                <p>Asesoría en contratos, herencias, propiedad y resolución de conflictos civiles.</p>
+            </div>
+            <div class="servicio-card">
+                <i class="fas fa-building"></i>
+                <h3>Derecho Corporativo</h3>
+                <p>Constitución de empresas SAS, asesoría legal para negocios y cumplimiento normativo.</p>
+            </div>
+            <div class="servicio-card">
+                <i class="fas fa-users"></i>
+                <h3>Derecho de Familia</h3>
+                <p>Manejo profesional y humano en divorcios, pensiones alimenticias, tenencia y patria potestad</p>
+            </div>
+            <div class="servicio-card">
+                <i class="fas fa-briefcase"></i>
+                <h3>Derecho Laboral</h3>
+                <p>Defensa en despidos intempestivos, cálculo de liquidaciones, acoso laboral y contratos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <span class="stat-number">20+</span>
+            <span class="stat-label">Años de Experiencia</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Casos Exitosos</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Compromiso</span>
+        </div>
+    </section>
+
+    <section id="equipo" class="equipo">
+        <div class="section-header">
+            <h2>Nuestros Abogados</h2>
+            <p>Un equipo familiar comprometido con la excelencia.</p>
+        </div>
+        <div class="grid-equipo">
+            <div class="abogado-card">
+                <img src="norman.jpeg" class="foto-abogado" alt="Foto Papá">
+                <div class="nombre-abogado">Dr. Norman Alexis Uquillas Casalombo</div>
+                <div class="cargo-abogado">Socio Fundador</div>
+            </div>
+            <div class="abogado-card">
+                <img src="sofia.jpg" class="foto-abogado" alt="Foto Hermana">
+                <div class="nombre-abogado">Dra. Paula Sofia Uquillas Verdezoto</div>
+                <div class="cargo-abogado">Socia Especialista</div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <div class="contacto-form">
+            <h2>Contáctenos por WhatsApp</h2>
+            <p style="margin-bottom: 30px;">Escríbanos directamente y un abogado le responderá al instante.</p>
+            
+            <form>
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" class="form-input" placeholder="Ej: Juan Pérez" id="nombreCliente">
+                </div>
+                <div class="form-group">
+                    <label>Su Cosulta</label>
+                    <textarea class="form-input" placeholder="Describa brevemente su caso..." id="mensajeCliente"></textarea>
+                </div>
+                <button onclick="enviarAlWhatsapp()" class="btn-submit" style="background-color: #25D366;">
+                    <i class="fab fa-whatsapp"></i> ENVIAR MENSAJE
+                </button>
+            </form>
+            
+            <div style="margin-top: 30px;">
+                <p><strong><i class="fas fa-phone"></i> Celular:</strong> 099-285-6416 | 096-313-2579  </p>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Dirección:</strong> Isabel de Santiago, Quito, Ecuador</p>
+            </div>
+        </div>
+
+        <div class="contacto-mapa">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.06236259046!2d-78.5630852077978!3d-0.1865942488805626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a400242219b%3A0xeec15d5aa43326d3!2sQuito!5e0!3m2!1ses!2sec!4v1700000000000!5m2!1ses!2sec" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 N&S UQUILLAS. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        function enviarAlWhatsapp() {
+            // 1. Tomamos los datos que escribió el cliente
+            var nombre = document.getElementById("nombreCliente").value;
+            var consulta = document.getElementById("mensajeCliente").value;
+
+            // 2. Validamos que no envíen cosas vacías
+            if (nombre === "" || consulta === "") {
+                alert("Por favor, escriba su nombre y su consulta antes de enviar.");
+                return;
+            }
+
+            // 3. Tu número de teléfono (CAMBIA ESTO)
+            // Formato: CódigoPais + Numero (Ej: 593991234567)
+            var telefonoBufete = "593992856416"; 
+
+            // 4. Creamos el mensaje bonito
+            var texto = "Hola, mi nombre es *" + nombre + "*. Quisiera consultar sobre: " + consulta;
+
+            // 5. Generamos el link de WhatsApp
+            var url = "https://wa.me/" + telefonoBufete + "?text=" + encodeURIComponent(texto);
+
+            // 6. Abrimos WhatsApp en una nueva pestaña
+            window.open(url, '_blank');
+        }
+
+        function toggleMenu() {
+            var menu = document.getElementById("menu-nav");
+            // Si tiene la clase "activo", se la quita. Si no, se la pone.
+            if (menu.className === "activo") {
+                menu.className = "";
+            } else {
+                menu.className = "activo";
+            }
+        }
+    </script>
+
+</body>
+</html>
