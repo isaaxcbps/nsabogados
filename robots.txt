@@ -1,0 +1,17 @@
+# Robots.txt para N&S Uquillas Abogados
+User-agent: *
+Allow: /
+
+# Evitar el rastreo de carpetas de recursos técnicos
+Disallow: /css/
+Disallow: /js/
+
+# Evitar la indexación individual de imágenes de publicaciones (opcional)
+# Esto obliga a que la gente vea las publicaciones dentro de tu web
+Disallow: /publicacion 1.jpeg
+Disallow: /publicacion 2.jpeg
+Disallow: /publicacion 3.jpeg
+Disallow: /publicacion 4
+
+# Ubicación oficial del mapa del sitio
+Sitemap: https://nslegalservices.lat/sitemap.xml
